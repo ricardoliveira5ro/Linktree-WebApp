@@ -1,0 +1,1233 @@
+.background {
+    @apply flex flex-col bg-[var(--background-grey)];
+}
+
+.header {
+    @apply flex items-center justify-between px-16 pt-16
+}
+
+.logo {
+    @apply max-w-[150px]
+}
+
+.logo_icon {
+    @apply hidden max-w-[32px]
+}
+
+.menu {
+    @apply flex flex-row items-center
+}
+
+.menu li {
+    font-family: 'Zen Dots', cursive;
+    @apply text-lg
+}
+
+.menu1 {
+    transition: all .2s ease-in-out;
+    @apply text-black
+}
+
+.menu2 {
+    @apply mx-3
+}
+
+.menu3 {
+    transition: all .2s ease-in-out;
+    @apply text-[var(--dark-grey)]
+}
+
+.menu1:hover {
+    transform: scale(1.3);
+    @apply mr-2
+}
+
+.menu3:hover {
+    transform: scale(1.3);
+    @apply ml-3
+}
+
+.search {
+    @apply bg-[#ffff] px-3 py-1 rounded-2xl items-center hidden;
+}
+
+.search img {
+    @apply max-w-[20px]
+}
+
+.search input {
+    @apply text-base pl-2
+}
+
+.search input:focus {
+    outline: none;
+}
+
+.accountDiv {
+    @apply flex items-center
+}
+
+.accountDiv button {
+    font-family: 'Open Sans', sans-serif;
+    transition: 0.5s;
+    border: 1px solid #e5e5e5;
+    @apply bg-[var(--red)] text-white px-3 py-1.5 rounded-md text-sm
+}
+
+.accountDiv button:hover {
+    border: 1px solid var(--red);
+    @apply bg-[var(--white)] text-[var(--red)]
+}
+
+.miniSearch {
+    @apply bg-[#ffff] pl-1.5 pr-3 py-1 rounded-lg items-center mr-2 hidden;
+}
+
+.miniSearch img {
+    @apply w-[15px]
+}
+
+.miniSearch input {
+    font-family: 'Zen Dots', cursive;
+    font-size: 11px;
+    line-height: 16px;
+    @apply pl-2 max-w-[120px]
+}
+
+.miniSearch input:focus {
+    outline: none;
+}
+
+.profileIcon {
+    @apply hidden
+}
+
+.profileIcon img{
+    @apply w-[22px]
+}
+
+.main {
+    @apply flex flex-1 justify-center;
+}
+
+.content {
+    @apply flex flex-col items-center justify-center pl-6;
+}
+
+.content h1 {
+    font-family: 'Shrikhand', cursive;
+    @apply text-[40px]
+}
+
+.content h3 {
+    font-family: 'Abhaya Libre', serif;
+    @apply text-2xl
+}
+
+.signup {
+    @apply flex bg-[var(--white)] w-fit mt-5 px-3 py-2 rounded-lg items-center;
+}
+
+.signup img {
+    @apply max-w-[25px] mr-2
+}
+
+.signup input {
+    @apply px-2 py-0.5
+}
+
+.signup input:focus {
+    outline: none;
+}
+
+.signup input::placeholder {
+    font-family: 'Abhaya Libre', serif;
+    @apply text-black text-xl
+}
+
+.signup button {
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid var(--white);
+    transition: 0.5s;
+    @apply bg-[var(--red)] text-white px-3 py-1.5 rounded-md text-sm ml-3
+}
+
+.signup button:hover {
+    border: 1px solid var(--red);
+    @apply bg-[var(--white)] text-[var(--red)]
+}
+
+.support {
+    @apply flex items-center w-fit mt-7
+}
+
+.download {
+    transition: all 250ms;
+    z-index: 1;
+    font-family: 'Abhaya Libre', serif;
+    @apply flex rounded-lg px-2.5 py-1.5 items-center w-fit mr-4 text-black text-xl relative;
+}
+
+.download img {
+    @apply max-w-[30px] mr-2
+}
+
+.download::before {
+    content: "";
+    background-color: var(--red);
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 450ms;
+    @apply rounded-lg w-0 h-full top-0 left-0 absolute text-white
+}
+
+.download:hover::before {
+    @apply text-white w-full;
+}
+
+.download:hover {
+    @apply text-white
+}
+
+.learn-more {
+    @apply w-[11rem] h-auto flex relative outline-none;
+}
+
+.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    @apply relative block w-[2.5rem] h-[2.5rem] rounded-[1rem] bg-[#000000]
+}
+
+.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    @apply absolute m-auto bg-[var(--white)] top-0 bottom-0;
+}
+
+.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    background: none;
+    @apply left-[0.3rem] w-[1.125rem] h-[0.125rem]
+}
+
+.learn-more .circle .icon.arrow::before {
+    content: "";
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+    @apply absolute top-[-0.275rem] right-[0.01rem] w-[0.625rem] h-[0.625rem];
+}
+
+.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    font-weight: 700;
+    line-height: 1.6;
+    @apply top-0 left-0 right-0 bottom-0 absolute py-[0.4rem] ml-[1.85rem] text-center uppercase text-[#000000]
+}
+
+.learn-more:hover .circle {
+    @apply w-full
+}
+
+.learn-more:hover .circle .icon.arrow {
+    transform: translate(1rem, 0);
+    @apply bg-[var(--white)]
+}
+
+.learn-more:hover .button-text {
+    @apply text-white;
+}
+
+.phone {
+    @apply flex items-end
+}
+
+.phone div {
+    @apply flex
+}
+
+/* Bigger screens (Lottie animation needs ajustments) */
+@media (min-width: 1600px) {
+    @media (min-height: 930px) {
+        .phone div {
+            @apply w-[750px]
+        }
+    }
+
+    @media (min-height: 960px) {
+        .phone div {
+            @apply w-[780px]
+        }
+    }
+
+    @media (min-height: 990px) {
+        @media (min-width: 1700px) {
+            .phone div {
+                @apply w-[810px]
+            } 
+        }        
+    }
+
+    @media (min-height: 1020px) {
+        @media (min-width: 1750px) {
+            .phone div {
+                @apply w-[840px]
+            }
+        } 
+        
+    }
+
+    @media (min-height: 1050px) {
+        @media (min-width: 1800px) {
+            .phone div {
+                @apply w-[870px]
+            }
+        }
+    }
+    
+    @media (min-height: 1080px) {
+        @media (min-width: 1800px) {
+            .logo {
+                @apply max-w-[180px]
+            }
+        
+            .menu li {
+                @apply text-xl
+            }
+        
+            .menu1:hover {
+                @apply mr-5
+            }
+            
+            .menu3:hover {
+                @apply ml-6
+            }
+        
+            .search img {
+                @apply max-w-[25px]
+            }
+            
+            .search input {
+                @apply text-lg pl-3
+            }
+        
+            .accountDiv button {
+                @apply text-base
+            }           
+        
+            .content h1 {
+                @apply text-[45px]
+            }
+        
+            .content h3 {
+                @apply text-3xl
+            }
+        
+            .signup img {
+                @apply max-w-[28px]
+            }
+        
+            .signup input {
+                @apply text-lg
+            }
+        
+            .signup input::placeholder {
+                @apply text-black text-2xl
+            }
+        
+            .signup button {
+                @apply text-base
+            }
+        
+            .download {
+                @apply text-2xl;
+            }
+            
+            .download img {
+                @apply max-w-[37px]
+            }
+        }
+    }
+
+    @media (min-height: 1150px) {
+        @media (min-width: 1900px) {
+            .phone div {
+                @apply w-[900px]
+            }
+        }
+    }
+
+    @media (min-height: 1200px) {
+        @media (min-width: 1950px) {
+            .phone div {
+                @apply w-[950px]
+            }
+        }
+    }
+
+    @media (min-height: 1300px) {
+        @media (min-width: 2100px) {
+            .logo {
+                @apply max-w-[200px]
+            }
+        
+            .menu li {
+                @apply text-2xl
+            }
+        
+            .menu1:hover {
+                @apply mr-6
+            }
+            
+            .menu3:hover {
+                @apply ml-7
+            }
+        
+            .search img {
+                @apply max-w-[27px]
+            }
+            
+            .search input {
+                @apply text-lg pl-4
+            }
+        
+            .accountDiv button {
+                @apply text-lg
+            }
+
+            .phone div {
+                @apply w-[1050px]
+            }
+        }
+    }
+
+    @media (min-height: 1400px) {
+        @media (min-width: 2200px) {
+            .phone div {
+                @apply w-[1100px]
+            }
+        }
+    }
+
+    @media (min-height: 1440px) {
+        @media (min-width: 2250px) {
+            .phone div {
+                @apply w-[1200px]
+            }
+
+            .logo {
+                @apply max-w-[220px]
+            }
+        
+            .menu li {
+                @apply text-[28px]
+            }
+        
+            .menu1:hover {
+                @apply mr-7
+            }
+            
+            .menu3:hover {
+                @apply ml-8
+            }
+        
+            .search img {
+                @apply max-w-[30px]
+            }
+            
+            .search input {
+                @apply text-xl pl-5
+            }
+        
+            .accountDiv button {
+                @apply text-xl
+            }
+
+            .content h1 {
+                @apply text-[52px]
+            }
+        
+            .content h3 {
+                @apply text-4xl
+            }
+        
+            .signup img {
+                @apply max-w-[32px]
+            }
+        
+            .signup input {
+                @apply text-xl
+            }
+        
+            .signup input::placeholder {
+                @apply text-black text-[27px]
+            }
+        
+            .signup button {
+                @apply text-lg
+            }
+        
+            .download {
+                @apply text-3xl;
+            }
+            
+            .download img {
+                @apply max-w-[42px]
+            }
+
+            .learn-more .button-text {
+                @apply text-xl ml-[2.7rem]
+            }
+
+            .learn-more {
+                @apply w-[13rem];
+            }
+            
+            .learn-more .circle {
+                @apply h-[2.8rem] h-[2.8rem]
+            }
+        }
+    }
+
+    @media (min-height: 1500px) {
+        @media (min-width: 2500px) {
+            .logo {
+                @apply max-w-[240px]
+            }
+        
+            .menu li {
+                @apply text-[32px]
+            }
+        
+            .menu1:hover {
+                @apply mr-8
+            }
+            
+            .menu3:hover {
+                @apply ml-9
+            }
+        
+            .search img {
+                @apply max-w-[32px]
+            }
+            
+            .search input {
+                @apply text-2xl pl-5
+            }
+        
+            .accountDiv button {
+                @apply text-2xl
+            }
+
+            .content h1 {
+                @apply text-[60px]
+            }
+        
+            .content h3 {
+                @apply text-5xl
+            }
+        
+            .signup img {
+                @apply max-w-[32px]
+            }
+        
+            .signup input {
+                @apply text-2xl
+            }
+        
+            .signup input::placeholder {
+                @apply text-black text-[30px]
+            }
+        
+            .signup button {
+                @apply text-xl
+            }
+        
+            .download {
+                @apply text-3xl;
+            }
+            
+            .download img {
+                @apply max-w-[42px]
+            }
+
+            .learn-more .button-text {
+                @apply text-2xl ml-[3.3rem]
+            }
+
+            .learn-more {
+                @apply w-[15rem];
+            }
+            
+            .learn-more .circle {
+                @apply w-[3rem] h-[3rem]
+            }
+
+            .learn-more .circle .icon.arrow {
+                transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                background: none;
+                @apply left-[0.6rem] w-[1.125rem] h-[0.125rem]
+            }
+
+            .phone div {
+                @apply w-[1300px]
+            }
+        }
+    }
+
+    @media (min-height: 1700px) {
+        @media (min-width: 2700px) {
+            .phone div {
+                @apply w-[1400px]
+            }
+        }
+    }
+
+    @media (min-height: 1800px) {
+        @media (min-width: 2800px) {
+            .phone div {
+                @apply w-[1500px]
+            }
+        }
+    }
+
+    @media (min-height: 1900px) {
+        @media (min-width: 2900px) {
+            .phone div {
+                @apply w-[1600px]
+            }
+        }
+    }
+
+    @media (min-height: 2000px) {
+        @media (min-width: 3000px) {
+            .logo {
+                @apply max-w-[280px]
+            }
+        
+            .menu li {
+                @apply text-[38px]
+            }
+        
+            .menu1:hover {
+                @apply mr-10
+            }
+            
+            .menu3:hover {
+                @apply ml-11
+            }
+        
+            .search img {
+                @apply max-w-[38px]
+            }
+            
+            .search input {
+                @apply text-3xl pl-5
+            }
+        
+            .accountDiv button {
+                @apply text-3xl
+            }
+
+            .content h1 {
+                @apply text-[68px]
+            }
+        
+            .content h3 {
+                @apply text-[55px]
+            }
+        
+            .signup img {
+                @apply max-w-[42px]
+            }
+        
+            .signup input {
+                @apply text-[28px]
+            }
+        
+            .signup input::placeholder {
+                @apply text-black text-[35px]
+            }
+        
+            .signup button {
+                @apply text-2xl
+            }
+        
+            .download {
+                @apply text-[40px];
+            }
+            
+            .download img {
+                @apply max-w-[55px]
+            }
+
+            .learn-more .button-text {
+                @apply text-3xl ml-[3.3rem]
+            }
+
+            .learn-more {
+                @apply w-[18rem];
+            }
+            
+            .learn-more .circle {
+                @apply w-[3.5rem] h-[3.5rem]
+            }
+
+            .learn-more .circle .icon.arrow {
+                transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                background: none;
+                @apply left-[0.8rem] w-[1.125rem] h-[0.125rem]
+            }
+
+            .learn-more .button-text {
+                @apply py-[0.6rem]
+            }
+
+            .phone div {
+                @apply w-[1700px]
+            }
+        }
+    }
+
+    @media (min-height: 2100px) {
+        @media (min-width: 3100px) {
+            .phone div {
+                @apply w-[1800px]
+            }
+        }
+
+        @media (min-width: 3500px) {
+            .logo {
+                @apply max-w-[300px]
+            }
+        
+            .menu li {
+                @apply text-[42px]
+            }
+        
+            .menu1:hover {
+                @apply mr-11
+            }
+            
+            .menu3:hover {
+                @apply ml-12
+            }
+        
+            .search img {
+                @apply max-w-[42px]
+            }
+            
+            .search input {
+                @apply text-[35px] pl-5 py-2
+            }
+        
+            .accountDiv button {
+                @apply text-4xl
+            }
+
+            .content h1 {
+                @apply text-[82px]
+            }
+        
+            .content h3 {
+                @apply text-[62px]
+            }
+        
+            .signup img {
+                @apply max-w-[50px]
+            }
+        
+            .signup input {
+                @apply text-[32px]
+            }
+        
+            .signup input::placeholder {
+                @apply text-black text-[40px]
+            }
+        
+            .signup button {
+                @apply text-3xl
+            }
+        
+            .download {
+                @apply text-[45px] mr-8;
+            }
+            
+            .download img {
+                @apply max-w-[60px]
+            }
+
+            .learn-more .button-text {
+                @apply text-4xl ml-[3.9rem]
+            }
+
+            .learn-more {
+                @apply w-[21rem];
+            }
+            
+            .learn-more .circle {
+                @apply w-[4.3rem] h-[4.3rem]
+            }
+
+            .learn-more .circle .icon.arrow {
+                transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                background: none;
+                @apply left-[1rem] w-[1.125rem] h-[0.125rem]
+            }
+
+            .learn-more .button-text {
+                @apply py-[0.8rem]
+            }
+
+            .phone div {
+                @apply w-[1900px]
+            }
+        }
+    }
+}
+
+/* Small screens */
+@media (max-width: 1550px) {
+    .content h1 {
+        @apply text-[35px]
+    }
+
+    .phone div {
+        @apply w-[620px]
+    }
+
+    @media (max-width: 1350px) {
+        .content h1 {
+            @apply text-3xl
+        }
+
+        .content h3 {
+            @apply text-xl
+        }
+
+        .signup img {
+            @apply max-w-[20px]
+        }
+    
+        .signup input {
+            @apply text-sm
+        }
+
+        .signup input::placeholder {
+            @apply text-black text-lg
+        }
+    
+        .signup button {
+            @apply text-xs ml-0
+        }
+
+        .download {
+            @apply text-lg mr-8;
+        }
+        
+        .download img {
+            @apply max-w-[25px]
+        }
+
+        .learn-more {
+            @apply w-[10rem];
+        }
+        
+        .learn-more .circle {
+            @apply w-[2.2rem] h-[2.2rem]
+        }
+        
+        .learn-more .circle .icon.arrow {
+            @apply left-[0.25rem] w-[1.125rem] h-[0.125rem]
+        }
+        
+        .learn-more .button-text {
+            @apply py-[0.45rem] ml-[1.6rem] text-sm
+        }
+
+        .download {
+            @apply mr-2
+        }
+    
+        .phone div {
+            @apply w-[580px]
+        }
+    }
+
+    @media (max-width: 1150px) {
+        .logo {
+            @apply max-w-[110px]
+        }
+        
+        .menu li {
+            @apply text-base
+        }
+        
+        .search img {
+            @apply max-w-[15px]
+        }
+        
+        .search input {
+            @apply text-sm pl-2 max-w-[160px]
+        }
+        
+        .accountDiv button {
+            @apply text-xs
+        }
+
+        .content h1 {
+            @apply text-2xl
+        }
+
+        .content h3 {
+            @apply text-lg
+        }
+
+        .signup img {
+            @apply max-w-[20px]
+        }
+    
+        .signup input {
+            @apply text-xs
+        }
+
+        .signup input::placeholder {
+            @apply text-black text-base
+        }
+    
+        .signup button {
+            font-size: 10px;
+            line-height: 13px;
+            @apply ml-1
+        }
+
+        .signup {
+            @apply py-1.5
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .content h1 {
+            @apply text-xl
+        }
+
+        .content h3 {
+            @apply text-base
+        }
+
+        .signup img {
+            @apply max-w-[16px] mr-0
+        }
+    
+        .signup input {
+            font-size: 11px;
+            line-height: 16px;
+        }
+
+        .signup input::placeholder {
+            font-size: 15px;
+            line-height: 20px;
+        }
+    
+        .signup button {
+            font-size: 10px;
+            line-height: 12px;
+            @apply ml-1 px-2
+        }
+
+        .signup {
+            @apply py-1 px-2 mt-2
+        }
+
+        .support {
+            @apply flex items-center w-fit mt-6
+        }
+
+        .download {
+            @apply text-base mr-4;
+        }
+        
+        .download img {
+            @apply max-w-[22px]
+        }
+
+        .learn-more {
+            @apply w-[8.5rem];
+        }
+        
+        .learn-more .circle {
+            @apply w-[1.7rem] h-[1.7rem]
+        }
+        
+        .learn-more .circle .icon.arrow {
+            @apply left-[-0.05rem] w-[1.125rem] h-[0.125rem]
+        }
+        
+        .learn-more .button-text {
+            @apply py-[0.35rem] ml-[1.4rem] text-xs
+        }
+    }
+
+    @media (max-width: 900px) {
+        .header {
+            @apply px-9 pt-10
+        }
+
+        .logo {
+            @apply max-w-[90px]
+        }
+        
+        .menu li {
+            @apply text-sm
+        }
+
+        .search img {
+            @apply max-w-[13px]
+        }
+        
+        .search input {
+            @apply text-xs pl-2 max-w-[130px]
+        }
+        
+        .accountDiv button {
+            font-size: 10px;
+            line-height: 14px;
+        }
+
+        .content h1 {
+            @apply text-lg
+        }
+
+        .content h3 {
+            @apply text-sm
+        }
+
+        .signup img {
+            @apply max-w-[14px]
+        }
+    
+        .signup input {
+            font-size: 10px;
+            line-height: 16px;
+        }
+
+        .signup input::placeholder {
+            font-size: 13px;
+            line-height: 20px;
+        }
+    
+        .signup button {
+            @apply py-1
+        }
+
+        .support {
+            @apply mt-4
+        }
+
+        .download {
+            @apply text-sm mr-2;
+        }
+        
+        .download img {
+            @apply max-w-[20px]
+        }
+
+        .learn-more {
+            @apply w-[8rem];
+        }
+        
+        .learn-more .circle {
+            @apply w-[1.5rem] h-[1.5rem]
+        }
+        
+        .learn-more .circle .icon.arrow {
+            @apply left-[-0.15rem] w-[1.125rem] h-[0.05rem]
+        }
+
+        .learn-more .circle .icon.arrow::before {
+            @apply top-[-0.25rem] right-[0.0625rem] w-[0.5rem] h-[0.5rem];
+        }
+        
+        .learn-more .button-text {
+            font-size: 11px;
+            line-height: 15px;
+            @apply py-[0.3rem] ml-[1.4rem]
+        }
+    }
+
+    @media (max-width: 740px) {
+        .phone div {
+            @apply hidden;
+        }
+
+        .logo {
+            @apply max-w-[80px]
+        }
+        
+        .menu li {
+            @apply text-xs
+        }
+
+        .search img {
+            @apply max-w-[12px]
+        }
+        
+        .search input {
+            font-size: 11px;
+            line-height: 16px;
+            @apply max-w-[120px]
+        }
+        
+        .accountDiv button {
+            font-size: 10px;
+            line-height: 12px;
+            @apply py-1 px-2
+        }
+
+        .content {
+            @apply px-0;
+        }
+
+        .signup {
+            @apply w-full justify-between
+        }
+
+        .signup input {
+            @apply w-full
+        }
+
+        .signup button {
+            @apply w-[80px]
+        }
+    }
+
+    @media (max-width: 560px) {
+        .header {
+            @apply px-6 pt-8
+        }
+
+        .logo {
+            @apply hidden
+        }
+
+        .logo_icon {
+            @apply flex
+        }
+
+        .menu {
+            @apply hidden;
+        }
+
+        .miniSearch {
+            @apply flex;
+        }
+
+        .profileIcon {
+            @apply flex;
+        }
+
+        .accountDiv button {
+            @apply hidden;
+        }
+    }
+
+    @media (max-width: 370px) {
+        .content h1 {
+            @apply text-base
+        }
+
+        .content h3 {
+            font-size: 0.83rem;
+            line-height: 1.25rem;
+        }
+
+        .signup button {
+            @apply w-[90px]
+        }
+
+        .support {
+            @apply mt-3
+        }
+
+        .download {
+            font-size: 13px;
+            line-height: 16px;
+            @apply mr-1;
+        }
+        
+        .download img {
+            @apply max-w-[20px]
+        }
+
+        .learn-more {
+            @apply w-[7rem];
+        }
+        
+        .learn-more .circle .icon.arrow {
+            @apply left-[-0.05rem] w-[1rem] h-[0.05rem]
+        }
+
+        .learn-more .circle .icon.arrow::before {
+            @apply top-[-0.25rem] right-[0.0625rem] w-[0.5rem] h-[0.5rem];
+        }
+        
+        .learn-more .button-text {
+            font-size: 10px;
+            line-height: 16px;
+            @apply py-[0.221rem] ml-[1.15rem]
+        }
+
+        .learn-more:hover .circle .icon.arrow {
+            transform: translate(0.6rem, 0);
+        }
+    }
+}
+
+/* Height breakpoints Lottie animation */
+@media (max-height: 815px) {
+    .phone div {
+        @apply w-[650px]
+    }
+
+    @media (max-height: 761px) {
+        .phone div {
+            @apply w-[600px]
+        }
+    }
+
+    @media (max-height: 711px) {
+        .phone div {
+            @apply w-[550px]
+        }
+    }
+
+    @media (max-height: 661px) {
+        .phone div {
+            @apply w-[510px]
+        }
+    }
+
+    @media (max-height: 621px) {
+        .phone div {
+            @apply w-[470px]
+        }
+    }
+
+    @media (max-height: 581px) {
+        .phone div {
+            @apply w-[430px]
+        }
+    }
+
+    @media (max-height: 500px) {
+        .phone div {
+            @apply w-[380px]
+        }
+    }
+
+    @media (max-height: 450px) {
+        .phone div {
+            @apply w-[330px]
+        }
+    }
+}
