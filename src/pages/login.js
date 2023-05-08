@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function Signup() {
+export default function Login() {
     const [windowHeight, setWindowHeight] = useState(null)
 
     useEffect(() => {
@@ -18,18 +18,18 @@ export default function Signup() {
         <>
             <div className="main_signup_login" style={{ minHeight: windowHeight }}>
                 <div className="signup_login">
-                    <form className='form'>
-                        <h1>Create your account</h1>
-                        <h3>One link, infinite connections.</h3>
+                <form className='form'>
+                        <h1>Log in to your account</h1>
+                        <h3>Your personalized link hub awaits</h3>
                         <input placeholder='Email' autoComplete='off'></input>
                         <input placeholder='Password' autoComplete='off'></input>
-                        <input placeholder='Confirm Password' autoComplete='off'></input>
-                        <button id='signup_btn'>Sign Up</button>
-                        <p>Already have an account? <a>Log In</a></p>
+                        <label><a>Forgot password?</a></label>
+                        <button id='login_btn'>Log In</button>
+                        <p>Don't have an account? <a>Sign up</a></p>
                     </form>
                 </div>
                 <div className="banner">
-                    <img src='https://ik.imagekit.io/ricardo5ro/Linktree/general/pexels-victoria-strelkaph-11034413.jpg?updatedAt=1683557801842' style={{ maxHeight: windowHeight }}></img>
+                    <img src='https://ik.imagekit.io/ricardo5ro/Linktree/general/pexels-sound-on-3756879.jpg?updatedAt=1683557801324' style={{ maxHeight: windowHeight }}></img>
                 </div>
             </div>
         </>
