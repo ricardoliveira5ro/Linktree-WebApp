@@ -1,53 +1,65 @@
-.main_login {
+.main_signup_login {
     @apply flex justify-end
 }
 
-.login {
+.signup_login {
     @apply flex flex-col items-center justify-center px-8 py-5 w-2/3
 }
 
-.form_login {
+.form {
     @apply flex flex-col w-[500px]
 }
 
-.form_login h1 {
+.form h1 {
     font-family: 'Ubuntu', sans-serif;
     font-size: 3rem/* 48px */;
     line-height: 28px;
     @apply mb-7
 }
 
-.form_login h3 {
+.form h3 {
     font-family: 'Abhaya Libre', serif;
     font-size: 22px;
     line-height: 20px;
     @apply mb-7 text-[#474747]
 }
 
-.form_login input {
+.form input {
     font-family: 'Montserrat', sans-serif;
     @apply bg-[var(--background-grey)] rounded-md mb-3 px-4 py-3 text-sm text-[#141414]
 }
 
-.form_login input::placeholder {
+.form input::placeholder {
     @apply text-[#141414]
 }
 
-.form_login input:focus {
+.form input:focus {
     outline: none;
 }
 
-.form_login button {
+.form button {
     font-family: 'Ubuntu', sans-serif;
-    @apply my-7 text-xl bg-[#841A3B] py-3 px-3 text-center rounded-3xl text-white
+    @apply my-7 text-xl py-3 px-3 text-center rounded-3xl text-white
 }
 
-.form_login p {
+#signup_btn {
+    @apply bg-[#841A3B]
+}
+
+#login_btn {
+    @apply bg-[#D98723]
+}
+
+.form p {
     @apply text-center
 }
 
-.form_login a {
+.form a {
     @apply text-[#841A3B] underline
+}
+
+.form label {
+    @apply text-end;
 }
 
 .banner {
@@ -55,35 +67,35 @@
 }
 
 @media (max-width: 1100px) {
-    .form_login h1 {
+    .form h1 {
         font-size: 38px;
         line-height: 24px;
     }
 
-    .form_login h3 {
+    .form h3 {
         font-size: 20px;
         line-height: 16px;
     }
 
-    .form_login {
+    .form {
         @apply w-[400px]
     }
 
-    .form_login button {
+    .form button {
         @apply text-base py-2
     }
 }
 
 @media (max-width: 900px) {
-    .login {
+    .signup {
         @apply w-full
     }
 
-    .form_login button {
+    .form button {
         @apply bg-[var(--red)]
     }
 
-    .form_login a {
+    .form a {
         @apply text-[var(--red)]
     }
 
@@ -93,45 +105,49 @@
 }
 
 @media (max-width: 500px) {
-    .form_login h1 {
+    .form h1 {
         font-size: 32px;
         line-height: 20px;
     }
 
-    .form_login h3 {
+    .form h3 {
         font-size: 18px;
         line-height: 14px;
     }
 
-    .form_login {
+    .form {
         @apply w-[320px]
     }
 }
 
 @media (max-width: 400px) {
-    .form_login h1 {
+    .form h1 {
         font-size: 25px;
         line-height: 14px;
     }
 
-    .form_login h3 {
+    .form h3 {
         font-size: 14px;
         line-height: 10px;
     }
 
-    .form_login {
+    .form {
         @apply w-[270px]
     }
 
-    .form_login input {
+    .form input {
         @apply text-xs px-3 py-2
     }
 
-    .form_login button {
+    .form button {
         @apply text-sm py-1.5
     }
 
-    .form_login p {
+    .form p {
+        @apply text-sm
+    }
+
+    .form label {
         @apply text-sm
     }
 }
