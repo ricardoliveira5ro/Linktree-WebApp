@@ -55,7 +55,7 @@
 }
 
 .form a {
-    @apply text-[#841A3B] underline
+    @apply underline
 }
 
 .form label {
