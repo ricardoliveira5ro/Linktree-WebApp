@@ -25,7 +25,7 @@ export default function Login() {
                         <input placeholder='Password' autoComplete='off'></input>
                         <label><a>Forgot password?</a></label>
                         <button id='login_btn'>Log In</button>
-                        <p>Don't have an account? <a>Sign up</a></p>
+                        <p>Don&apos;t have an account? <a>Sign up</a></p>
                     </form>
                 </div>
                 <div className="banner">
