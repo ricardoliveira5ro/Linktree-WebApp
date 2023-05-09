@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Login() {
     const [windowHeight, setWindowHeight] = useState(null)
@@ -26,7 +27,7 @@ export default function Login() {
                         <input placeholder='Password' autoComplete='off'></input>
                         <label><a>Forgot password?</a></label>
                         <button id='login_btn'>Log In</button>
-                        <p>Don&apos;t have an account? <a>Sign up</a></p>
+                        <p>Don&apos;t have an account? <Link href='/signup'>Sign up</Link></p>
                     </form>
                 </div>
                 <div className="banner">

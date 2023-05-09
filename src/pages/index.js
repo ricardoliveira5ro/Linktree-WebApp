@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import Script from 'next/script'
 import Image from 'next/image';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -58,7 +59,7 @@ export default function Home() {
           <Image className='logo' src='https://ik.imagekit.io/ricardo5ro/Linktree/logo/linktree_black.png?updatedAt=1681143068053' alt='Linktree Logo' width={1500} height={420}></Image>
           <Image className='logo_icon' src='https://ik.imagekit.io/ricardo5ro/Linktree/logo/icon_Fy3Lvr137?updatedAt=1683017622032' alt='Linktree Icon' width={320} height={270}></Image>
           <ul className='menu'>
-            <a href=''><li className='menu1'>Home</li></a>
+            <Link href='/'><li className='menu1'>Home</li></Link>
             <li className='menu2'>|</li>
             <a id='discover' onClick={() => toggleSearch(false)}><li className='menu3'>Discover</li></a>
             <li id='search' className='search' ref={searchRef}>
@@ -83,7 +84,7 @@ export default function Home() {
               <div className='signup'>
                 <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/email__1_.png?updatedAt=1682882640230' alt='Email Icon' width={250} height={250}></Image>
                 <input placeholder='example@email.com' autoComplete='off'></input>
-                <button>SIGN UP</button>
+                <Link href='/signup'><button>SIGN UP</button></Link>
               </div>
               <div className='support'>
                 <button className='download'>

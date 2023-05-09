@@ -33,6 +33,7 @@
 }
 
 .menu3 {
+    cursor: pointer;
     transition: all .2s ease-in-out;
     @apply text-[var(--dark-grey)]
 }
