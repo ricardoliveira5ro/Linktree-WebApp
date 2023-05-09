@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Login() {
     const [windowHeight, setWindowHeight] = useState(null)
@@ -29,7 +30,7 @@ export default function Login() {
                     </form>
                 </div>
                 <div className="banner">
-                    <img src='https://ik.imagekit.io/ricardo5ro/Linktree/general/pexels-sound-on-3756879.jpg?updatedAt=1683557801324' style={{ maxHeight: windowHeight }}></img>
+                    <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/general/login.jpg?updatedAt=1683627554047' alt='Side banner' width={windowHeight/1.5} height={windowHeight*1}></Image>
                 </div>
             </div>
         </>
