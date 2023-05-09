@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Signup() {
     const [windowHeight, setWindowHeight] = useState(null)
@@ -29,7 +30,7 @@ export default function Signup() {
                     </form>
                 </div>
                 <div className="banner">
-                    <img src='https://ik.imagekit.io/ricardo5ro/Linktree/general/pexels-victoria-strelkaph-11034413.jpg?updatedAt=1683557801842' style={{ maxHeight: windowHeight }}></img>
+                    <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/general/signup.jpg?updatedAt=1683627571722' alt='Side banner' width={windowHeight/1.5} height={windowHeight*1}></Image>
                 </div>
             </div>
         </>

@@ -87,7 +87,7 @@
 }
 
 @media (max-width: 900px) {
-    .signup {
+    .signup_login {
         @apply w-full
     }
 
