@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [windowHeight, setWindowHeight] = useState(null)
   const searchRef = useRef(null)
+  const [emailData, setEmailData] = useState({ email: '' });
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,8 +84,16 @@ export default function Home() {
               <h3>Your gateway to the online world.</h3>
               <div className='signup'>
                 <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/email__1_.png?updatedAt=1682882640230' alt='Email Icon' width={250} height={250}></Image>
-                <input placeholder='example@email.com' autoComplete='off'></input>
-                <Link href='/signup'><button>SIGN UP</button></Link>
+                <input 
+                  placeholder='example@email.com'
+                  autoComplete='off'
+                  value={emailData.email}
+                  onChange={(event) =>
+                  setEmailData({
+                    email: event.target.value,
+                  })}
+                ></input>
+                <Link href={{ pathname: 'signup', query: emailData}}><button>SIGN UP</button></Link>
               </div>
               <div className='support'>
                 <button className='download'>

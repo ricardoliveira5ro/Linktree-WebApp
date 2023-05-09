@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from "next/router";
 
 export default function Signup() {
     const [windowHeight, setWindowHeight] = useState(null)
+    const email = useRouter().query.email;
 
     useEffect(() => {
+        //Initialize input with email passed
+        document.getElementById('email_input_signup').value = email;
+
         const handleResize = () => {
             setWindowHeight(window.innerHeight)
         }
@@ -23,7 +28,7 @@ export default function Signup() {
                     <form className='form'>
                         <h1>Create your account</h1>
                         <h3>One link, infinite connections.</h3>
-                        <input placeholder='Email' autoComplete='off'></input>
+                        <input placeholder='Email' id='email_input_signup' autoComplete='off'></input>
                         <input placeholder='Password' autoComplete='off'></input>
                         <input placeholder='Confirm Password' autoComplete='off'></input>
                         <button id='signup_btn'>Sign Up</button>
