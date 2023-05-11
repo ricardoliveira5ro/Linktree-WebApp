@@ -42,6 +42,7 @@ export default function Signup() {
         }
 
         // else successful
+        console.log('Success!')
         console.log(result)
         //return router.push("/admin")
     }
