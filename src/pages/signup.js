@@ -9,6 +9,7 @@ import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 const auth = getAuth(firebase_app);
 
+
 export default function Signup() {
     const [windowHeight, setWindowHeight] = useState(null)
     const emailTemp = useRouter().query.emailTemp;
