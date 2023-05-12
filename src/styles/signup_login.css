@@ -14,19 +14,19 @@
     font-family: 'Ubuntu', sans-serif;
     font-size: 3rem/* 48px */;
     line-height: 28px;
-    @apply mb-7
+    @apply mb-7 font-bold
 }
 
 .form h3 {
     font-family: 'Abhaya Libre', serif;
     font-size: 22px;
     line-height: 20px;
-    @apply mb-7 text-[#474747]
+    @apply mb-4 text-[#474747]
 }
 
 .form input {
     font-family: 'Montserrat', sans-serif;
-    @apply bg-[var(--background-grey)] rounded-md mb-3 px-4 py-3 text-sm text-[#141414]
+    @apply bg-[var(--background-grey)] rounded-md mt-3 mb-0.5 px-4 py-3 text-sm text-[#141414]
 }
 
 .form input::placeholder {
@@ -35,6 +35,11 @@
 
 .form input:focus {
     outline: none;
+}
+
+.form span {
+    font-family: 'Ubuntu', sans-serif;
+    @apply px-1.5 text-sm text-red-600 font-normal hidden
 }
 
 .form button {
