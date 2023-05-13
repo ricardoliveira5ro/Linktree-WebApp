@@ -5,13 +5,10 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const auth = getAuth(firebase_app);
 
 export const AuthContext = createContext({})
-
 export const useAuthContext = () => useContext(AuthContext);
 
-export const AuthContextProvider = ({
-    children,
-}) => {
-    const [user, setUser] = useState(null)
+const AuthContextProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -22,14 +19,16 @@ export const AuthContextProvider = ({
                 setUser(null);
             }
             setLoading(false);
-        })
+        });
 
         return () => unsubscribe();
-    }, [])
+    }, []);
 
     return (
         <AuthContext.Provider value={{ user }}>
             {loading ? <div>Loading...</div> : children}
         </AuthContext.Provider>
     );
-}
+};
+
+export default AuthContextProvider;
