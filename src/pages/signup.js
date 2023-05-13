@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Head from 'next/head'
 
 import firebase_app from '../../firebase-config'
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signOut } from "firebase/auth";
 
 export default function Signup() {
     const [windowHeight, setWindowHeight] = useState(null)
@@ -166,6 +166,9 @@ export default function Signup() {
             error = null;
         try {
             result = await createUserWithEmailAndPassword(auth, email, password);
+
+            //Stop automatically signin after creating user
+            signOut(auth)
         } catch (e) {
             error = e;
             firebaseErrorHandling(e.code)
