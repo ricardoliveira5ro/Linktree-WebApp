@@ -5,6 +5,7 @@ import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import Script from 'next/script'
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuthContext } from './authContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,10 +14,14 @@ export default function Home() {
   const searchRef = useRef(null)
   const [emailData, setEmailData] = useState({ emailTemp: '' });
 
+  const user = useAuthContext()
+
   useEffect(() => {
     const handleResize = () => {
       setWindowHeight(window.innerHeight)
     }
+
+    console.log(user)
 
     handleResize()
     
