@@ -143,6 +143,24 @@ export default function Signup() {
         return password === confirmPassword;
     }
 
+    const firebaseErrorHandling = (errorCode) => {
+        document.getElementById('email').value = ''
+        document.getElementById('email').style.border = '1px solid #dc2626'
+
+        document.getElementById('password').value = ''
+        document.getElementById('password').style.border = '1px solid #dc2626'
+
+        document.getElementById('confirmPassword').value = ''
+        document.getElementById('confirmPassword').style.border = '1px solid #dc2626'
+
+        switch (errorCode) {
+            case 'auth/email-already-in-use':
+                document.getElementById('spanEmail').style.display = 'flex'
+                document.getElementById('spanEmail').textContent = 'Email already in use'
+                break;
+        }
+    }
+
     async function signUp(email, password) {
         let result = null,
             error = null;
@@ -150,6 +168,7 @@ export default function Signup() {
             result = await createUserWithEmailAndPassword(auth, email, password);
         } catch (e) {
             error = e;
+            firebaseErrorHandling(e.code)
         }
     
         return { result, error };
