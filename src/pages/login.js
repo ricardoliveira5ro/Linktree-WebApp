@@ -33,12 +33,12 @@ export default function Login() {
 
         resetInvalidMessages();
 
-        if(!email) {
+        if (!email) {
             emptyEmail()
             invalid = true;
         }
 
-        if(!password) {
+        if (!password) {
             emptyPassword()
             invalid = true;
         }
@@ -76,6 +76,29 @@ export default function Login() {
         document.getElementById('spanEmail').textContent = 'Required field'
     }
 
+    const firebaseErrorHandling = (errorCode) => {
+        document.getElementById('email').value = ''
+        document.getElementById('email').style.border = '1px solid #dc2626'
+
+        document.getElementById('password').value = ''
+        document.getElementById('password').style.border = '1px solid #dc2626'
+
+        switch (errorCode) {
+            case 'auth/invalid-email':
+                document.getElementById('spanEmail').style.display = 'flex'
+                document.getElementById('spanEmail').textContent = 'Invalid email'
+                break;
+            case 'auth/user-not-found':
+                document.getElementById('spanEmail').style.display = 'flex'
+                document.getElementById('spanEmail').textContent = 'User not found'
+                break;
+            case 'auth/wrong-password':
+                document.getElementById('spanPassword').style.display = 'flex'
+                document.getElementById('spanPassword').textContent = 'Incorrect credentials'
+                break;
+        }
+    }
+
     async function signIn(email, password) {
         let result = null,
             error = null;
@@ -83,8 +106,9 @@ export default function Login() {
             result = await signInWithEmailAndPassword(auth, email, password);
         } catch (e) {
             error = e;
+            firebaseErrorHandling(e.code)
         }
-    
+
         return { result, error };
     }
 
@@ -97,7 +121,7 @@ export default function Login() {
             </Head>
             <div className="main_signup_login" style={{ minHeight: windowHeight }}>
                 <div className="signup_login">
-                <form className='form' onSubmit={handleForm}>
+                    <form className='form' onSubmit={handleForm}>
                         <h1>Log in to your account</h1>
                         <h3>Your personalized link hub awaits</h3>
                         <input placeholder='Email' autoComplete='off' name="email" id="email" onChange={(e) => setEmail(e.target.value)}></input>
@@ -110,7 +134,7 @@ export default function Login() {
                     </form>
                 </div>
                 <div className="banner">
-                    <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/general/login.jpg?updatedAt=1683627554047' alt='Side banner' width={windowHeight/1.5} height={windowHeight*1}></Image>
+                    <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/general/login.jpg?updatedAt=1683627554047' alt='Side banner' width={windowHeight / 1.5} height={windowHeight * 1}></Image>
                 </div>
             </div>
         </>
