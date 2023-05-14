@@ -51,7 +51,7 @@ export default function Login() {
             return console.log(error)
         }
 
-        return router.push('/')
+        return router.push('/account')
     }
 
     const resetInvalidMessages = () => {

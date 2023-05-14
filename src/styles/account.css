@@ -1,0 +1,39 @@
+.main_account {
+    @apply flex bg-[var(--background-grey)] items-center justify-evenly;
+}
+
+.phone_model {
+    border: 8px solid black;
+    border-radius: 30px;
+    @apply w-[300px] h-[560px] bg-[#1d1d1d] flex flex-col items-center px-5 py-2
+}
+
+.account_profileImg {
+    @apply max-w-[50px] mt-8
+}
+
+.username {
+    @apply text-[var(--background-grey)] mt-1 text-sm text-center
+}
+
+.account_link {
+    @apply bg-[var(--background-grey)] rounded-xl px-3 py-1.5 flex justify-center items-center w-full mt-10
+}
+
+.account_link img{
+    @apply max-w-[24px] mr-2
+}
+
+.account_link span {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 18px;
+    line-height: 0px;
+}
+
+.account_info {
+    @apply flex
+}
+
+.account_info form {
+    @apply flex flex-col
+}
