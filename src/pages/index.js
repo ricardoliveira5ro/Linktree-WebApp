@@ -76,7 +76,7 @@ export default function Home() {
               <input placeholder='Type something' autoComplete='off'></input>
             </div>
             <a className='profileIcon' href=''><Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/profile-user.png?updatedAt=1682980525659' alt='Profile Icon' width={220} height={220}></Image></a>
-            <button>MY ACCOUNT</button>
+            <Link href='/account'><button>MY ACCOUNT</button></Link>
           </div>
         </div>
         <div className='main'>
