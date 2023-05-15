@@ -21,13 +21,11 @@
 }
 
 .backgroundstripe {
-    background: repeating-linear-gradient(
-        45deg,
-        #9d9d9d 0px,
-        #9d9d9d 15px,
-        var(--background-grey) 15px,
-        var(--background-grey) 30px
-    );
+    background: repeating-linear-gradient(45deg,
+            #9d9d9d 0px,
+            #9d9d9d 15px,
+            var(--background-grey) 15px,
+            var(--background-grey) 30px);
 }
 
 .account_link span {
@@ -73,9 +71,102 @@
 }
 
 .account_info {
-    @apply flex
+    @apply flex flex-col
 }
 
-.account_info form {
+.account_home {
+    @apply flex flex-row mb-6 items-center w-fit
+}
+
+.account_home span{
+    font-family: 'Ubuntu', sans-serif;
+    @apply font-medium text-xl ml-1.5 text-[#0a6bad]
+}
+
+.account_title {
+    font-family: 'Ubuntu', sans-serif;
+    @apply font-bold text-4xl
+}
+
+.account_form {
     @apply flex flex-col
+}
+
+.account_names {
+    @apply flex flex-row
+}
+
+.account_form input {
+    font-family: 'Ubuntu', sans-serif;
+    border: 1px solid black;
+    @apply px-2 py-1 mt-3 rounded-xl text-center font-light
+}
+
+#account_email {
+    font-family: 'Ubuntu', sans-serif;
+    @apply bg-white px-2 py-1 mt-3 rounded-xl text-center font-light text-[#9fa3af] cursor-not-allowed
+}
+
+.account_usernameInput {
+    @apply max-w-[180px]
+}
+
+.account_bottom {
+    @apply flex flex-row mt-5
+}
+
+.account_gender {
+    @apply flex flex-col w-full
+}
+
+.account_gender h3 {
+    font-family: 'Abhaya Libre', serif;
+    @apply text-xl
+}
+
+.account_radioButtons {
+    @apply flex flex-row mt-2
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio]+img {
+    cursor: pointer;
+}
+
+#male + img {
+    @apply p-1
+}
+
+#female + img {
+    @apply p-1
+}
+
+#male:checked + img {
+    outline: 2px solid #4fc9ed;
+    @apply rounded-lg bg-[#c9eaf4]
+}
+
+#female:checked + img {
+    outline: 2px solid #f277a6;
+    @apply rounded-lg bg-[#f6d6e2]
+}
+
+.account_submit {
+    @apply flex justify-end items-end w-full
+}
+
+.account_submit button {
+    border: 1px solid #37c743;
+    @apply bg-[#37c743] px-3 py-0.5 flex items-center rounded-lg
+}
+
+.account_submit span {
+    font-family: 'Ubuntu', sans-serif;
+    @apply font-medium text-white mr-2 text-lg
 }
