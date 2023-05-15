@@ -13,21 +13,63 @@
 }
 
 .username {
-    @apply text-[var(--background-grey)] mt-1 text-sm text-center
+    @apply text-[var(--background-grey)] mt-1 mb-7 text-sm text-center
 }
 
 .account_link {
-    @apply bg-[var(--background-grey)] rounded-xl px-3 py-1.5 flex justify-center items-center w-full mt-10
+    @apply bg-[var(--background-grey)] rounded-xl flex justify-center items-center mt-3.5 w-full px-3 py-1.5
 }
 
-.account_link img{
-    @apply max-w-[24px] mr-2
+.backgroundstripe {
+    background: repeating-linear-gradient(
+        45deg,
+        #9d9d9d 0px,
+        #9d9d9d 15px,
+        var(--background-grey) 15px,
+        var(--background-grey) 30px
+    );
 }
 
 .account_link span {
     font-family: 'Abhaya Libre', serif;
     font-size: 18px;
-    line-height: 0px;
+    line-height: 20px;
+    @apply font-semibold
+}
+
+.account_addIcon {
+    @apply max-w-[20px] mr-2
+}
+
+.account_connection {
+    @apply hidden flex-col w-full mt-3.5
+}
+
+.account_connection_top {
+    @apply flex items-center
+}
+
+.account_inputUrl {
+    @apply w-full
+}
+
+.account_input_connection {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 18px;
+    line-height: 20px;
+    @apply bg-[var(--background-grey)] rounded-xl px-3 py-1.5
+}
+
+.account_input_connection:focus {
+    outline: none;
+}
+
+.account_connection_bottom {
+    @apply flex justify-between mt-3
+}
+
+.account_connection_submit {
+    @apply max-w-[22px]
 }
 
 .account_info {
