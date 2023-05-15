@@ -7,16 +7,26 @@ export default function Account() {
 
     useEffect(() => {
         const handleResize = () => {
-          setWindowHeight(window.innerHeight)
+            setWindowHeight(window.innerHeight)
         }
-    
+
         handleResize()
-        
+
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)
-      }, [])
+    }, [])
 
-    const newLocal = 'account_profileImg'
+    const addOrCloseConnection = (add) => {
+        var els = document.getElementsByClassName('hiddenConnections');
+
+        Array.prototype.forEach.call(els, function (el) {
+            add ? el.style.display = 'none' : el.style.display = 'flex'
+        });
+
+        var addConnection = document.getElementById('addConnection')
+        add ? addConnection.style.display = 'flex' : addConnection.style.display = 'none'
+    }
+
     return (
         <>
             <Head>
@@ -26,11 +36,26 @@ export default function Account() {
             </Head>
             <div className='main_account' style={{ minHeight: windowHeight }}>
                 <div className='phone_model'>
-                    <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218' width={500} height={500} alt='User photo' className={newLocal}></Image>
+                    <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218' width={500} height={500} alt='User photo' className='account_profileImg'></Image>
                     <span className='username'>@ricardo5ro</span>
-                    <div className='account_link'>
-                        <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/instagram.png?updatedAt=1684088942361' width={500} height={500} alt='Social icon'></Image>
+                    <button className='account_link hiddenConnections'>
                         <span>Instragram</span>
+                    </button>
+                    <button className='account_link backgroundstripe hiddenConnections' onClick={() => addOrCloseConnection(true)}>
+                        <Image className='account_addIcon' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/plus.png?updatedAt=1684095913516' width={500} height={500} alt='Add icon'></Image>
+                        <span>Add Connection</span>
+                    </button>
+                    <div className='account_connection' id='addConnection'>
+                        <div className='account_connection_top'>
+                            <input className='account_inputUrl account_input_connection' placeholder='Your URL' autoComplete='off' maxLength={50}></input>
+                        </div>
+                        <div className='account_connection_bottom'>
+                            <input className='w-full account_input_connection' placeholder='Title' autoComplete='off' maxLength={12}></input>
+                            <div className='flex items-center'>
+                                <button className='mx-2'><Image className='account_connection_submit' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/checked.png?updatedAt=1684143314120' width={500} height={500} alt='Submit'></Image></button>
+                                <button onClick={() => addOrCloseConnection(false)}><Image className='account_connection_submit' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/cross.png?updatedAt=1684143314655' width={500} height={500} alt='Submit'></Image></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='account_info'>
