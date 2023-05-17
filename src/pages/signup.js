@@ -6,6 +6,7 @@ import Head from 'next/head'
 
 import firebase_app from '../../firebase-config'
 import { createUserWithEmailAndPassword, getAuth, signOut } from "firebase/auth";
+import { getDatabase, set, ref } from 'firebase/database'
 
 export default function Signup() {
     const [windowHeight, setWindowHeight] = useState(null)
@@ -17,6 +18,7 @@ export default function Signup() {
 
     const router = useRouter();
     const auth = getAuth(firebase_app);
+    const db = getDatabase(firebase_app);
 
     useEffect(() => {
         const handleResize = () => {
@@ -161,11 +163,22 @@ export default function Signup() {
         }
     }
 
+    const writeDefaultInfoToDb = (uid) => {
+        set(ref(db, 'users/' + uid), {
+            firstName: '',
+            lastName: '',
+            email: email,
+            gender: 'male'
+        })
+    }
+
     async function signUp(email, password) {
         let result = null,
             error = null;
         try {
             result = await createUserWithEmailAndPassword(auth, email, password);
+            
+            writeDefaultInfoToDb(auth.currentUser.uid)
 
             //Stop automatically signin after creating user
             signOut(auth)
