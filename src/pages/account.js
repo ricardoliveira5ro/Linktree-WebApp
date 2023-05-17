@@ -3,10 +3,16 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { useState, useEffect } from 'react'
 
+import firebase_app from '../../firebase-config'
+import { getAuth, signOut } from "firebase/auth";
+import { useRouter } from "next/router";
+
 export default function Account() {
     const [windowHeight, setWindowHeight] = useState(null)
     const [selectedOption, setSelectedOption] = useState(null);
     const [imageSrcProfile, setimageSrcProfile] = useState('https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218');
+    const auth = getAuth(firebase_app);
+    const router = useRouter();
 
     useEffect(() => {
         const handleResize = () => {
@@ -59,6 +65,10 @@ export default function Account() {
             setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/woman.png?updatedAt=1684161997979')
     };
 
+    const signOutAndLeave = () => {
+        signOut(auth);
+    };
+
     return (
         <>
             <Head>
@@ -91,10 +101,16 @@ export default function Account() {
                     </div>
                 </div>
                 <div className='account_info'>
-                    <Link href='/' className='account_home'>
-                        <Image className='max-w-[35px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/home-button.png?updatedAt=1684166408561' width={500} height={500} alt='Home button'></Image>
-                        <span>Home</span>
-                    </Link>
+                    <div className='account_topInfo'>
+                        <Link href='/' className='account_home' onClick={signOutAndLeave}>
+                            <Image className='max-w-[35px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/home-button.png?updatedAt=1684166408561' width={500} height={500} alt='Home button'></Image>
+                            <span>Home</span>
+                        </Link>
+                        <Link href='/' className='account_signout'>
+                            <span>Sign Out</span>
+                            <Image className='max-w-[35px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/logout.png?updatedAt=1684351982022' width={500} height={500} alt='Signout button'></Image>
+                        </Link>
+                    </div>
                     <h1 className='account_title'>Personal Information</h1>
                     <form className='account_form'>
                         <div className='account_names'>
