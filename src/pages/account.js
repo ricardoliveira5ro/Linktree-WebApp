@@ -6,13 +6,21 @@ import { useState, useEffect } from 'react'
 import firebase_app from '../../firebase-config'
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "next/router";
+import { getDatabase, get, ref, child } from 'firebase/database'
 
 export default function Account() {
     const [windowHeight, setWindowHeight] = useState(null)
     const [selectedOption, setSelectedOption] = useState(null);
     const [imageSrcProfile, setimageSrcProfile] = useState('https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218');
+    const [snapshotData, setSnapshotData] = useState([])
+    const [firstName, setFirstName] = useState(snapshotData.firstName || '')
+    const [lastName, setLastName] = useState('')
+    const [numLinks, setNumLinks] = useState(1)
+    const [connections, setConnections] = useState([])
+
     const auth = getAuth(firebase_app);
     const router = useRouter();
+    const db = getDatabase();
 
     useEffect(() => {
         const handleResize = () => {
@@ -27,19 +35,35 @@ export default function Account() {
 
     useEffect(() => {
         const fetchData = async () => {
-            //Fetch data
-            var gender = 'female';
+            try {
+                const snapshot = await get(child(ref(db), `users/${auth.currentUser.uid}`));
 
-            console.log(gender)
+                if (snapshot.exists()) {
+                    setSnapshotData(snapshot.val())
 
-            //Use data on if
-            if (gender == 'female') {
-                setSelectedOption(gender)
-                setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/woman.png?updatedAt=1684161997979')
-            }
-            else {
-                setSelectedOption('male')
-                setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218')
+                    const gender = snapshot.val().gender;
+                    setSelectedOption(gender);
+                    if (gender === 'female') {
+                        setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/woman.png?updatedAt=1684161997979');
+                    } else {
+                        setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218');
+                    }
+
+                    const firstName = snapshot.val().firstName
+                    const lastName = snapshot.val().lastName
+                    document.getElementById('firstName').value = firstName
+                    document.getElementById('lastName').value = lastName
+
+                    const items = snapshot.val().links;
+                    if (items) {
+                        const dataArray = Object.entries(items).map(([id, item]) => ({ id, ...item }));
+                        setConnections(dataArray)
+                    }
+
+                    setNumLinks(items.length - 1)
+                }
+            } catch (error) {
+                // Handle error
             }
         }
 
@@ -80,13 +104,17 @@ export default function Account() {
                 <div className='phone_model'>
                     <Image src={imageSrcProfile} width={500} height={500} alt='User photo' className='account_profileImg'></Image>
                     <span className='username'>@ricardo5ro</span>
-                    <button className='account_link hiddenConnections'>
-                        <span>&#128247; Instragram</span>
-                    </button>
-                    <button className='account_link backgroundstripe hiddenConnections' onClick={() => addOrCloseConnection(true)}>
-                        <Image className='account_addIcon' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/plus.png?updatedAt=1684095913516' width={500} height={500} alt='Add icon'></Image>
-                        <span>Add Connection</span>
-                    </button>
+                    {connections.length > 1 && connections.slice(1).map((item, index) => (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className='account_link hiddenConnections' key={index}>
+                            <span>{item.title}</span>
+                        </a>
+                    ))}
+                    {numLinks < 7 &&
+                        <button className='account_link backgroundstripe hiddenConnections' onClick={() => addOrCloseConnection(true)}>
+                            <Image className='account_addIcon' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/plus.png?updatedAt=1684095913516' width={500} height={500} alt='Add icon'></Image>
+                            <span>Add Connection</span>
+                        </button>
+                    }
                     <div className='account_connection' id='addConnection'>
                         <div className='account_connection_top'>
                             <input className='account_inputUrl account_input_connection' placeholder='Your URL' autoComplete='off' maxLength={50}></input>
@@ -114,10 +142,10 @@ export default function Account() {
                     <h1 className='account_title'>Personal Information</h1>
                     <form className='account_form'>
                         <div className='account_names'>
-                            <input className='account_usernameInput mr-4' placeholder='First Name' autoComplete='off'></input>
-                            <input className='account_usernameInput' placeholder='Last Name' autoComplete='off'></input>
+                            <input className='account_usernameInput mr-4' placeholder='First Name' name='firstName' id='firstName' onChange={(e) => setFirstName(e.target.value)} autoComplete='off'></input>
+                            <input className='account_usernameInput' placeholder='Last Name' name='lastName' id='lastName' onChange={(e) => setLastName(e.target.value)} autoComplete='off'></input>
                         </div>
-                        <span id='account_email'>ricardo@gmail.com</span>
+                        <span id='account_email'>{snapshotData.email}</span>
                         <div className='account_bottom'>
                             <div className='account_gender'>
                                 <h3>What is your gender?</h3>

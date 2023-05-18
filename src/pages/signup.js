@@ -168,7 +168,10 @@ export default function Signup() {
             firstName: '',
             lastName: '',
             email: email,
-            gender: 'male'
+            gender: 'male',
+            links: [
+                {title: '', url: ''}
+            ]
         })
     }
 
@@ -177,7 +180,7 @@ export default function Signup() {
             error = null;
         try {
             result = await createUserWithEmailAndPassword(auth, email, password);
-            
+
             writeDefaultInfoToDb(auth.currentUser.uid)
 
             //Stop automatically signin after creating user
@@ -186,7 +189,7 @@ export default function Signup() {
             error = e;
             firebaseErrorHandling(e.code)
         }
-    
+
         return { result, error };
     }
 
