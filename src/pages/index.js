@@ -5,7 +5,9 @@ import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import Script from 'next/script'
 import Image from 'next/image';
 import Link from 'next/link';
-//import { useAuthContext } from './authContext';
+import firebase_app from '../../firebase-config'
+import { getAuth } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,7 +16,8 @@ export default function Home() {
   const searchRef = useRef(null)
   const [emailData, setEmailData] = useState({ emailTemp: '' });
 
-  //const {user} = useAuthContext()
+  const auth = getAuth(firebase_app);
+  const router = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,6 +52,10 @@ export default function Home() {
     }
   }, [searchRef])
 
+  const handleMyAccount = () => {
+    auth.currentUser ? router.push('/account') : router.push('/login')
+  }
+
   return (
     <>
       <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></Script>
@@ -76,7 +83,7 @@ export default function Home() {
               <input placeholder='Type something' autoComplete='off'></input>
             </div>
             <a className='profileIcon' href=''><Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/profile-user.png?updatedAt=1682980525659' alt='Profile Icon' width={220} height={220}></Image></a>
-            <Link href='/account'><button>MY ACCOUNT</button></Link>
+            <button onClick={handleMyAccount}>MY ACCOUNT</button>
           </div>
         </div>
         <div className='main'>
