@@ -130,11 +130,11 @@ export default function Account() {
                 </div>
                 <div className='account_info'>
                     <div className='account_topInfo'>
-                        <Link href='/' className='account_home' onClick={signOutAndLeave}>
+                        <Link href='/' className='account_home'>
                             <Image className='max-w-[35px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/home-button.png?updatedAt=1684166408561' width={500} height={500} alt='Home button'></Image>
                             <span>Home</span>
                         </Link>
-                        <Link href='/' className='account_signout'>
+                        <Link href='/' className='account_signout' onClick={signOutAndLeave}>
                             <span>Sign Out</span>
                             <Image className='max-w-[35px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/logout.png?updatedAt=1684351982022' width={500} height={500} alt='Signout button'></Image>
                         </Link>
