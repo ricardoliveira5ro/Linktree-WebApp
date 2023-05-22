@@ -175,6 +175,16 @@ export default function Account() {
         openOrCloseEditConnection(false, -1);
     }
 
+    const saveInfo = (event) => {
+        event.preventDefault()
+
+        update(ref(db, 'users/' + auth.currentUser.uid), {
+            firstName: firstName || '',
+            lastName: lastName || '',
+            gender: selectedOption
+        })
+    }
+
     return (
         <>
             <Head>
@@ -240,8 +250,10 @@ export default function Account() {
                             <Image className='max-w-[35px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/logout.png?updatedAt=1684351982022' width={500} height={500} alt='Signout button'></Image>
                         </Link>
                     </div>
+
+
                     <h1 className='account_title'>Personal Information</h1>
-                    <form className='account_form'>
+                    <form className='account_form' onSubmit={saveInfo}>
                         <div className='account_names'>
                             <input className='account_usernameInput mr-4' placeholder='First Name' name='firstName' id='firstName' onChange={(e) => setFirstName(e.target.value)} autoComplete='off'></input>
                             <input className='account_usernameInput' placeholder='Last Name' name='lastName' id='lastName' onChange={(e) => setLastName(e.target.value)} autoComplete='off'></input>
@@ -274,7 +286,7 @@ export default function Account() {
                                 </div>
                             </div>
                             <div className='account_submit'>
-                                <button type='submit'>
+                                <button>
                                     <span>Save</span>
                                     <Image className='max-w-[25px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/accept.png?updatedAt=1684165588471' width={500} height={500} alt='Submit button'></Image>
                                 </button>
