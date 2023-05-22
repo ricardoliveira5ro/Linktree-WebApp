@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
 import { useState, useEffect } from 'react'
-
+import { useRouter } from 'next/router';
 import firebase_app from '../../firebase-config'
 import { getAuth, signOut } from "firebase/auth";
 import { getDatabase, get, ref, child, set, push, update } from 'firebase/database'
@@ -18,7 +18,7 @@ export default function Account() {
     const [connections, setConnections] = useState([])
     const [url, setUrl] = useState('')
     const [title, setTitle] = useState('')
-
+    const router = useRouter();
     const auth = getAuth(firebase_app);
     const db = getDatabase();
 
@@ -34,41 +34,56 @@ export default function Account() {
     }, [])
 
     useEffect(() => {
+        const checkAuthentication = () => {
+            const user = auth.currentUser;
+            if (!user)
+                router.push('/login');
+        };
+
+        checkAuthentication();
+    }, [router, auth.currentUser]);
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
-                const snapshot = await get(child(ref(db), `users/${auth.currentUser.uid}`));
+                const user = auth.currentUser
 
-                if (snapshot.exists()) {
-                    setSnapshotData(snapshot.val())
+                if (user) {
+                    const snapshot = await get(child(ref(db), `users/${user.uid}`));
 
-                    const gender = snapshot.val().gender;
-                    setSelectedOption(gender);
-                    if (gender === 'female') {
-                        setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/woman.png?updatedAt=1684161997979');
-                    } else {
-                        setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218');
+                    if (snapshot.exists()) {
+                        setSnapshotData(snapshot.val())
+
+                        const gender = snapshot.val().gender;
+                        setSelectedOption(gender);
+                        if (gender === 'female') {
+                            setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/woman.png?updatedAt=1684161997979');
+                        } else {
+                            setimageSrcProfile('https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218');
+                        }
+
+                        const firstName = snapshot.val().firstName
+                        const lastName = snapshot.val().lastName
+                        document.getElementById('firstName').value = firstName
+                        document.getElementById('lastName').value = lastName
+
+                        const items = snapshot.val().links;
+                        if (items) {
+                            const dataArray = Object.entries(items).map(([id, item]) => ({ id, ...item }));
+                            setConnections(dataArray)
+                        }
+
+                        setNumLinks(items ? items.length - 1 : 0)
                     }
-
-                    const firstName = snapshot.val().firstName
-                    const lastName = snapshot.val().lastName
-                    document.getElementById('firstName').value = firstName
-                    document.getElementById('lastName').value = lastName
-
-                    const items = snapshot.val().links;
-                    if (items) {
-                        const dataArray = Object.entries(items).map(([id, item]) => ({ id, ...item }));
-                        setConnections(dataArray)
-                    }
-
-                    setNumLinks(items.length - 1)
                 }
+
             } catch (error) {
                 // Handle error
             }
         }
 
         fetchData()
-    }, [])
+    }, [auth.currentUser, db]);
 
     const addOrCloseConnection = (add) => {
         var els = document.getElementsByClassName('hiddenConnections');
@@ -161,7 +176,7 @@ export default function Account() {
                             <input className='account_usernameInput mr-4' placeholder='First Name' name='firstName' id='firstName' onChange={(e) => setFirstName(e.target.value)} autoComplete='off'></input>
                             <input className='account_usernameInput' placeholder='Last Name' name='lastName' id='lastName' onChange={(e) => setLastName(e.target.value)} autoComplete='off'></input>
                         </div>
-                        <span id='account_email'>{auth.currentUser.email}</span>
+                        <span id='account_email'>{snapshotData.email}</span>
                         <div className='account_bottom'>
                             <div className='account_gender'>
                                 <h3>What is your gender?</h3>
