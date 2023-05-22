@@ -70,6 +70,9 @@ export default function Account() {
                         document.getElementById('firstName').value = firstName
                         document.getElementById('lastName').value = lastName
 
+                        setFirstName(firstName)
+                        setLastName(lastName)
+
                         const items = snapshot.val().links;
                         if (items) {
                             const dataArray = Object.entries(items).map(([id, item]) => ({ id, ...item }));
@@ -183,6 +186,8 @@ export default function Account() {
             lastName: lastName || '',
             gender: selectedOption
         })
+
+        window.location.reload();
     }
 
     return (
