@@ -13,11 +13,15 @@
 }
 
 .username {
-    @apply text-[var(--background-grey)] mt-1 mb-7 text-sm text-center
+    @apply text-[var(--background-grey)] mt-1 mb-10 text-sm text-center
+}
+
+.account_link_section {
+    @apply flex flex-row justify-center items-center mb-3.5 w-full
 }
 
 .account_link {
-    @apply bg-[var(--background-grey)] rounded-xl flex justify-center items-center mt-3.5 w-full px-3 py-1.5
+    @apply bg-[var(--background-grey)] rounded-xl flex justify-center items-center w-full px-3 py-1.5
 }
 
 .backgroundstripe {
@@ -40,7 +44,7 @@
 }
 
 .account_connection {
-    @apply hidden flex-col w-full mt-3.5
+    @apply hidden flex-col w-full mb-3.5
 }
 
 .account_connection_top {

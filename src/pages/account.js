@@ -18,6 +18,9 @@ export default function Account() {
     const [connections, setConnections] = useState([])
     const [url, setUrl] = useState('')
     const [title, setTitle] = useState('')
+    const [editedIndex, setEditedIndex] = useState(-1)
+    const [editedUrl, setEditedUrl] = useState('')
+    const [editedTitle, setEditedTitle] = useState('')
     const router = useRouter();
     const auth = getAuth(firebase_app);
     const db = getDatabase();
@@ -124,6 +127,54 @@ export default function Account() {
         addOrCloseConnection(false)
     }
 
+    const deleteConnection = (index) => {
+        const tempConnections = [...connections]
+        tempConnections.splice(index + 1, 1)
+
+        update(ref(db, 'users/' + auth.currentUser.uid), {
+            links: tempConnections
+        })
+
+        setConnections(tempConnections);
+    }
+
+    const openOrCloseEditConnection = (open, index) => {
+        setEditedIndex(index + 1)
+
+        var els = document.getElementsByClassName('hiddenConnections');
+
+        Array.prototype.forEach.call(els, function (el) {
+            open ? el.style.display = 'none' : el.style.display = 'flex'
+        });
+
+        var editConnection = document.getElementById('editConnection')
+        open ? editConnection.style.display = 'flex' : editConnection.style.display = 'none'
+
+        //Open edit mode
+        if (index != -1) {
+            var connection = connections[index + 1]
+
+            document.getElementById('editedUrl').value = connection.url
+            document.getElementById('editedTitle').value = connection.title
+        }
+    }
+
+    const updateConnection = () => {
+        const updatedConnections = [...connections];
+
+        updatedConnections[editedIndex] = {
+            title: editedTitle,
+            url: editedUrl,
+        }
+
+        update(ref(db, 'users/' + auth.currentUser.uid), {
+            links: updatedConnections
+        })
+
+        setConnections(updatedConnections);
+        openOrCloseEditConnection(false, -1);
+    }
+
     return (
         <>
             <Head>
@@ -135,11 +186,30 @@ export default function Account() {
                 <div className='phone_model'>
                     <Image src={imageSrcProfile} width={500} height={500} alt='User photo' className='account_profileImg'></Image>
                     <span className='username'>@ricardo5ro</span>
+
+
                     {connections.length > 1 && connections.slice(1).map((item, index) => (
-                        <a href={item.url} target="_blank" rel="noopener noreferrer" className='account_link hiddenConnections' key={index}>
-                            <span>{item.title}</span>
-                        </a>
+                        <div className='account_link_section hiddenConnections' key={index}>
+                            <button className='account_link' onClick={() => openOrCloseEditConnection(true, index)}>
+                                <span>{item.title}</span>
+                            </button>
+                            <Image className='max-w-[32px] ml-2' onClick={() => deleteConnection(index)} src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/delete.png?updatedAt=1684763829463' width={500} height={500} alt='Add icon'></Image>
+                        </div>
                     ))}
+                    <div className='account_connection' id='editConnection'>
+                        <div className='account_connection_top'>
+                            <input className='account_inputUrl account_input_connection' placeholder='Your URL' name='editedUrl' id='editedUrl' onChange={(e) => setEditedUrl(e.target.value)} autoComplete='off' maxLength={50}></input>
+                        </div>
+                        <div className='account_connection_bottom'>
+                            <input className='w-full account_input_connection' placeholder='Title' name='editedTitle' id='editedTitle' onChange={(e) => setEditedTitle(e.target.value)} autoComplete='off' maxLength={12}></input>
+                            <div className='flex items-center'>
+                                <button onClick={updateConnection} className='mx-2'><Image className='account_connection_submit' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/checked.png?updatedAt=1684143314120' width={500} height={500} alt='Submit'></Image></button>
+                                <button onClick={() => openOrCloseEditConnection(false, -1)}><Image className='account_connection_submit' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/cross.png?updatedAt=1684143314655' width={500} height={500} alt='Submit'></Image></button>
+                            </div>
+                        </div>
+                    </div>
+
+
                     {numLinks < 7 &&
                         <button className='account_link backgroundstripe hiddenConnections' onClick={() => addOrCloseConnection(true)}>
                             <Image className='account_addIcon' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/plus.png?updatedAt=1684095913516' width={500} height={500} alt='Add icon'></Image>
