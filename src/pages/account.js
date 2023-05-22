@@ -5,8 +5,7 @@ import { useState, useEffect } from 'react'
 
 import firebase_app from '../../firebase-config'
 import { getAuth, signOut } from "firebase/auth";
-import { useRouter } from "next/router";
-import { getDatabase, get, ref, child } from 'firebase/database'
+import { getDatabase, get, ref, child, set, push, update } from 'firebase/database'
 
 export default function Account() {
     const [windowHeight, setWindowHeight] = useState(null)
@@ -17,9 +16,10 @@ export default function Account() {
     const [lastName, setLastName] = useState('')
     const [numLinks, setNumLinks] = useState(1)
     const [connections, setConnections] = useState([])
+    const [url, setUrl] = useState('')
+    const [title, setTitle] = useState('')
 
     const auth = getAuth(firebase_app);
-    const router = useRouter();
     const db = getDatabase();
 
     useEffect(() => {
@@ -79,6 +79,9 @@ export default function Account() {
 
         var addConnection = document.getElementById('addConnection')
         add ? addConnection.style.display = 'flex' : addConnection.style.display = 'none'
+
+        document.getElementById('url').value = ''
+        document.getElementById('title').value = ''
     }
 
     const handleOptionChange = (event) => {
@@ -92,6 +95,19 @@ export default function Account() {
     const signOutAndLeave = () => {
         signOut(auth);
     };
+
+    const saveConnection = () => {
+        var tempConnection = { url: url, title: title }
+        const newConnections = [...connections, tempConnection];
+        connections.push(tempConnection)
+
+        update(ref(db, 'users/' + auth.currentUser.uid), {
+            links: connections
+        })
+
+        setConnections(newConnections);
+        addOrCloseConnection(false)
+    }
 
     return (
         <>
@@ -117,12 +133,12 @@ export default function Account() {
                     }
                     <div className='account_connection' id='addConnection'>
                         <div className='account_connection_top'>
-                            <input className='account_inputUrl account_input_connection' placeholder='Your URL' autoComplete='off' maxLength={50}></input>
+                            <input className='account_inputUrl account_input_connection' placeholder='Your URL' name='url' id='url' onChange={(e) => setUrl(e.target.value)} autoComplete='off' maxLength={50}></input>
                         </div>
                         <div className='account_connection_bottom'>
-                            <input className='w-full account_input_connection' placeholder='Title' autoComplete='off' maxLength={12}></input>
+                            <input className='w-full account_input_connection' placeholder='Title' name='title' id='title' onChange={(e) => setTitle(e.target.value)} autoComplete='off' maxLength={12}></input>
                             <div className='flex items-center'>
-                                <button className='mx-2'><Image className='account_connection_submit' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/checked.png?updatedAt=1684143314120' width={500} height={500} alt='Submit'></Image></button>
+                                <button onClick={saveConnection} className='mx-2'><Image className='account_connection_submit' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/checked.png?updatedAt=1684143314120' width={500} height={500} alt='Submit'></Image></button>
                                 <button onClick={() => addOrCloseConnection(false)}><Image className='account_connection_submit' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/cross.png?updatedAt=1684143314655' width={500} height={500} alt='Submit'></Image></button>
                             </div>
                         </div>
@@ -145,7 +161,7 @@ export default function Account() {
                             <input className='account_usernameInput mr-4' placeholder='First Name' name='firstName' id='firstName' onChange={(e) => setFirstName(e.target.value)} autoComplete='off'></input>
                             <input className='account_usernameInput' placeholder='Last Name' name='lastName' id='lastName' onChange={(e) => setLastName(e.target.value)} autoComplete='off'></input>
                         </div>
-                        <span id='account_email'>{snapshotData.email}</span>
+                        <span id='account_email'>{auth.currentUser.email}</span>
                         <div className='account_bottom'>
                             <div className='account_gender'>
                                 <h3>What is your gender?</h3>
