@@ -25,6 +25,7 @@ export default function Account() {
     const auth = getAuth(firebase_app);
     const db = getDatabase();
 
+    //Window size
     useEffect(() => {
         const handleResize = () => {
             setWindowHeight(window.innerHeight)
@@ -36,6 +37,7 @@ export default function Account() {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
+    //Check authorized access
     useEffect(() => {
         const checkAuthentication = () => {
             const user = auth.currentUser;
@@ -46,6 +48,7 @@ export default function Account() {
         checkAuthentication();
     }, [router, auth.currentUser]);
 
+    //Fetch data
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -92,6 +95,7 @@ export default function Account() {
     }, [auth.currentUser, db]);
 
     const addOrCloseConnection = (add) => {
+        console.log(numLinks)
         var els = document.getElementsByClassName('hiddenConnections');
 
         Array.prototype.forEach.call(els, function (el) {
@@ -127,6 +131,7 @@ export default function Account() {
         })
 
         setConnections(newConnections);
+        setNumLinks(numLinks + 1);
         addOrCloseConnection(false)
     }
 
@@ -138,6 +143,7 @@ export default function Account() {
             links: tempConnections
         })
 
+        setNumLinks(numLinks - 1);
         setConnections(tempConnections);
     }
 
