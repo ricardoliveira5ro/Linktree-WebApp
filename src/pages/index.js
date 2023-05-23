@@ -15,21 +15,24 @@ export default function Home() {
   const [windowHeight, setWindowHeight] = useState(null)
   const searchRef = useRef(null)
   const [emailData, setEmailData] = useState({ emailTemp: '' });
+  const [searchInfo, setSearchInfo] = useState({ searchInfo: '' });
 
   const auth = getAuth(firebase_app);
   const router = useRouter();
 
+  //Window size
   useEffect(() => {
     const handleResize = () => {
       setWindowHeight(window.innerHeight)
     }
 
     handleResize()
-    
+
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  //Click outside search
   useEffect(() => {
     const handleClickOutside = event => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -56,6 +59,14 @@ export default function Home() {
     auth.currentUser ? router.push('/account') : router.push('/login')
   }
 
+  const discover = () => {
+    console.log(searchInfo)
+    router.push({
+      pathname: '/discover',
+      query: { searchInfo: searchInfo }
+    })
+  }
+
   return (
     <>
       <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></Script>
@@ -73,8 +84,8 @@ export default function Home() {
             <li className='menu2'>|</li>
             <a id='discover' onClick={() => toggleSearch(false)}><li className='menu3'>Discover</li></a>
             <li id='search' className='search' ref={searchRef}>
-              <a href=''><Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/search__1_.png?updatedAt=1681465571645' alt='Search Icon' width={200} height={200}></Image></a>
-              <input placeholder='Type something' autoComplete='off'></input>
+              <a className='cursor-pointer' onClick={discover}><Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/search__1_.png?updatedAt=1681465571645' alt='Search Icon' width={200} height={200}></Image></a>
+              <input placeholder='Type something' autoComplete='off' onChange={(e) => setSearchInfo(e.target.value)}></input>
             </li>
           </ul>
           <div className='accountDiv'>
@@ -93,16 +104,16 @@ export default function Home() {
               <h3>Your gateway to the online world.</h3>
               <div className='signup'>
                 <Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/email__1_.png?updatedAt=1682882640230' alt='Email Icon' width={250} height={250}></Image>
-                <input 
+                <input
                   placeholder='example@email.com'
                   autoComplete='off'
                   value={emailData.emailTemp}
                   onChange={(event) =>
-                  setEmailData({
-                    emailTemp: event.target.value,
-                  })}
+                    setEmailData({
+                      emailTemp: event.target.value,
+                    })}
                 ></input>
-                <Link href={{ pathname: 'signup', query: emailData}}><button>SIGN UP</button></Link>
+                <Link href={{ pathname: 'signup', query: emailData }}><button>SIGN UP</button></Link>
               </div>
               <div className='support'>
                 <button className='download'>
