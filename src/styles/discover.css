@@ -1,0 +1,42 @@
+.discover_main {
+    @apply flex flex-row flex-wrap
+}
+
+.discover_profile {
+    
+    @apply flex flex-col flex-1 items-center py-4 px-10
+}
+
+.discover_profile img {
+    @apply mt-10
+}
+
+.discover_profile h3 {
+    font-family: 'Abhaya Libre', serif;
+    @apply mt-2 mb-7 text-2xl
+}
+
+.discover_link {
+    transition: 0.3s;
+    font-family: 'Open Sans', sans-serif;
+    @apply px-3 py-1 rounded-lg mt-6 w-full text-center text-lg min-w-[300px]
+}
+
+.discover_link_even {
+    @apply bg-[#b3b3b3]
+}
+
+.discover_link_odd {
+    @apply bg-[var(--background-grey)]
+}
+
+.discover_link:hover {
+    @apply text-white bg-[var(--red)]
+}
+
+/* Reset min-w of links */
+@media (max-width: 400px) {
+    .discover_link {
+        @apply min-w-fit
+    }
+}
