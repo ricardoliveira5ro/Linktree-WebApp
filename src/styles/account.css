@@ -124,6 +124,11 @@
     @apply bg-white px-2 py-1 mt-3 rounded-xl text-center font-light text-[#9fa3af] cursor-not-allowed
 }
 
+.account_username_id {
+    font-family: 'Ubuntu', sans-serif;
+    @apply bg-white px-2 py-1 mt-3 rounded-xl text-center font-light text-[#9fa3af]
+}
+
 .account_usernameInput {
     @apply max-w-[180px]
 }
