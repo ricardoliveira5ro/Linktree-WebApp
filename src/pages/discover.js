@@ -2,11 +2,14 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
+import { getDatabase, get, ref, child } from 'firebase/database'
 
 export default function Discover() {
     const [windowHeight, setWindowHeight] = useState(null)
     const router = useRouter();
     const searchQueryTemp = router.query.searchInfo;
+    const [usersData, setUsersData] = useState([])
+    const db = getDatabase();
 
     //Window size
     useEffect(() => {
@@ -20,6 +23,26 @@ export default function Discover() {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
+    //Fetch data
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const snapshot = await get(child(ref(db), 'users/'))
+
+                var users = []
+                snapshot.forEach((childSnapshot) => {
+                    const user = childSnapshot.val()
+                    users.push(user)
+                })
+
+                setUsersData(users)
+            } catch (error) {
+
+            }
+        }
+        fetchData()
+    }, [db]);
+
     return (
         <>
             <Head>
@@ -28,48 +51,21 @@ export default function Discover() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <div className='discover_main'>
-                <div className='discover_profile bg-[#f372728f]' style={{ minHeight: windowHeight }}>
-                    <Image className='max-w-[70px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218' width={500} height={500} alt='User photo'></Image>
-                    <h3>@ricardo5ro</h3>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                </div>
-
-
-                <div className='discover_profile bg-[var(--background-grey)]' style={{ minHeight: windowHeight }}>
-                    <Image className='max-w-[70px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218' width={500} height={500} alt='User photo'></Image>
-                    <h3>@ricardo5ro</h3>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                </div>
-
-
-                <div className='discover_profile bg-[#f372728f]' style={{ minHeight: windowHeight }}>
-                    <Image className='max-w-[70px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218' width={500} height={500} alt='User photo'></Image>
-                    <h3>@ricardo5ro</h3>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_odd' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                </div>
-
-
-                <div className='discover_profile bg-[var(--background-grey)]' style={{ minHeight: windowHeight }}>
-                    <Image className='max-w-[70px]' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218' width={500} height={500} alt='User photo'></Image>
-                    <h3>@ricardo5ro</h3>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                    <a className='discover_link discover_link_even' href='https://www.instagram.com/cristiano/' target="_blank" rel="noopener noreferrer">Instagram</a>
-                </div>
+                {usersData.map((item, index) => (
+                    <div className={`discover_profile ${(index + 1) % 2 === 0 ? 'bg-[var(--background-grey)]' : 'bg-[#f372728f]'}`} style={{ minHeight: windowHeight }} key={index}>
+                        <Image
+                            className='max-w-[70px]'
+                            src={item.gender === 'male' ?
+                                'https://ik.imagekit.io/ricardo5ro/Linktree/icons/user.png?updatedAt=1684087499218' :
+                                'https://ik.imagekit.io/ricardo5ro/Linktree/icons/woman.png?updatedAt=1684161997979'}
+                            width={500} height={500} alt='User photo'>
+                        </Image>
+                        <h3>@{item.userName}</h3>
+                        {item.links.slice(1).map((link, indexLink) => (
+                            <a key={indexLink} className={`discover_link ${(index % 2 === 0 ? 'discover_link_odd' : 'discover_link_even')}`} href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+                        ))}
+                    </div>
+                ))}
             </div>
         </>
     )

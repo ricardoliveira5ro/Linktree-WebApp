@@ -3,7 +3,6 @@
 }
 
 .discover_profile {
-    
     @apply flex flex-col flex-1 items-center py-4 px-10
 }
 
