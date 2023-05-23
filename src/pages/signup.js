@@ -167,6 +167,7 @@ export default function Signup() {
         set(ref(db, 'users/' + uid), {
             firstName: '',
             lastName: '',
+            userName: '',
             email: email,
             gender: 'male',
             links: [
