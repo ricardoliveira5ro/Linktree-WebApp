@@ -14,6 +14,7 @@ export default function Account() {
     const [snapshotData, setSnapshotData] = useState([])
     const [firstName, setFirstName] = useState(snapshotData.firstName || '')
     const [lastName, setLastName] = useState('')
+    const [userName, setUserName] = useState('')
     const [numLinks, setNumLinks] = useState(1)
     const [connections, setConnections] = useState([])
     const [url, setUrl] = useState('')
@@ -70,11 +71,14 @@ export default function Account() {
 
                         const firstName = snapshot.val().firstName
                         const lastName = snapshot.val().lastName
+                        const userName = snapshot.val().userName
                         document.getElementById('firstName').value = firstName
                         document.getElementById('lastName').value = lastName
+                        document.getElementById('userName').value = userName
 
                         setFirstName(firstName)
                         setLastName(lastName)
+                        setUserName(userName)
 
                         const items = snapshot.val().links;
                         if (items) {
@@ -95,7 +99,6 @@ export default function Account() {
     }, [auth.currentUser, db]);
 
     const addOrCloseConnection = (add) => {
-        console.log(numLinks)
         var els = document.getElementsByClassName('hiddenConnections');
 
         Array.prototype.forEach.call(els, function (el) {
@@ -190,6 +193,7 @@ export default function Account() {
         update(ref(db, 'users/' + auth.currentUser.uid), {
             firstName: firstName || '',
             lastName: lastName || '',
+            userName: userName || '',
             gender: selectedOption
         })
 
@@ -206,7 +210,7 @@ export default function Account() {
             <div className='main_account' style={{ minHeight: windowHeight }}>
                 <div className='phone_model'>
                     <Image src={imageSrcProfile} width={500} height={500} alt='User photo' className='account_profileImg'></Image>
-                    <span className='username'>@ricardo5ro</span>
+                    <span className='username'>@{userName}</span>
 
 
                     {connections.length > 1 && connections.slice(1).map((item, index) => (
@@ -214,7 +218,7 @@ export default function Account() {
                             <button className='account_link' onClick={() => openOrCloseEditConnection(true, index)}>
                                 <span>{item.title}</span>
                             </button>
-                            <Image className='max-w-[32px] ml-2' onClick={() => deleteConnection(index)} src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/delete.png?updatedAt=1684763829463' width={500} height={500} alt='Add icon'></Image>
+                            <Image className='max-w-[32px] ml-2 cursor-pointer' onClick={() => deleteConnection(index)} src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/delete.png?updatedAt=1684763829463' width={500} height={500} alt='Add icon'></Image>
                         </div>
                     ))}
                     <div className='account_connection' id='editConnection'>
@@ -270,6 +274,7 @@ export default function Account() {
                             <input className='account_usernameInput' placeholder='Last Name' name='lastName' id='lastName' onChange={(e) => setLastName(e.target.value)} autoComplete='off'></input>
                         </div>
                         <span id='account_email'>{snapshotData.email}</span>
+                        <input className='account_username_id' placeholder='User Name' name='userName' id='userName' onChange={(e) => setUserName(e.target.value)} autoComplete='off'></input>
                         <div className='account_bottom'>
                             <div className='account_gender'>
                                 <h3>What is your gender?</h3>
