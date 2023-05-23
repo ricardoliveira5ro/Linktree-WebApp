@@ -1,5 +1,5 @@
 .main_account {
-    @apply flex bg-[var(--background-grey)] items-center justify-evenly;
+    @apply flex bg-[var(--background-grey)] items-center justify-evenly py-5 px-5;
 }
 
 .phone_model {
@@ -86,7 +86,7 @@
     @apply flex flex-row w-fit items-center h-fit
 }
 
-.account_signout span{
+.account_signout span {
     font-family: 'Ubuntu', sans-serif;
     @apply font-medium text-xl mr-1.5 text-[#e04f5f]
 }
@@ -95,7 +95,7 @@
     @apply flex flex-row w-fit items-center h-fit
 }
 
-.account_home span{
+.account_home span {
     font-family: 'Ubuntu', sans-serif;
     @apply font-medium text-xl ml-1.5 text-[#0a6bad]
 }
@@ -156,20 +156,20 @@
     cursor: pointer;
 }
 
-#male + img {
+#male+img {
     @apply p-1
 }
 
-#female + img {
+#female+img {
     @apply p-1
 }
 
-#male:checked + img {
+#male:checked+img {
     outline: 2px solid #4fc9ed;
     @apply rounded-lg bg-[#c9eaf4]
 }
 
-#female:checked + img {
+#female:checked+img {
     outline: 2px solid #f277a6;
     @apply rounded-lg bg-[#f6d6e2]
 }
@@ -186,4 +186,94 @@
 .account_submit span {
     font-family: 'Ubuntu', sans-serif;
     @apply font-medium text-white mr-2 text-lg
+}
+
+@media (max-height: 650px) {
+    .username {
+        @apply mb-6
+    }
+
+    .phone_model {
+        @apply w-[280px] h-[510px]
+    }
+}
+
+@media (max-width: 830px) {
+    .main_account {
+        @apply flex-col-reverse
+    }
+
+    .account_info {
+        @apply mt-5 mb-16
+    }
+}
+
+@media (max-width: 520px) {
+    .account_home img{
+        @apply max-w-[28px]
+    }
+
+    .account_home span {
+        @apply text-lg
+    }
+
+    .account_signout img{
+        @apply max-w-[28px]
+    }
+
+    .account_signout span {
+        @apply text-lg
+    }
+
+    .account_title {
+        @apply text-3xl
+    }
+
+    .account_usernameInput {
+        @apply max-w-[150px]
+    }
+
+    .account_gender h3 {
+        @apply text-lg
+    }
+
+    .account_radioButtons img{
+        @apply max-w-[40px]
+    }
+
+    .account_submit span {
+        @apply text-base
+    }
+
+    .account_submit img {
+        @apply max-w-[18px]
+    }
+
+    .username {
+        @apply mb-6
+    }
+
+    .phone_model {
+        @apply w-[280px] h-[510px]
+    }
+}
+
+@media (max-width: 420px) {
+    .account_title {
+        font-size: 28px;
+        line-height: 2.25rem/* 36px */;
+    }
+
+    .account_usernameInput {
+        @apply max-w-[130px]
+    }
+
+    .account_gender h3 {
+        font-size: 16px;
+        line-height: 1.75rem/* 28px */;
+    }
+
+    .phone_model {
+        @apply w-[260px] h-[490px]
+    }
 }

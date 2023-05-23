@@ -8,3 +8,7 @@
   --dark-grey: #808080;
   --white: #ffff;
 }
+
+html::-webkit-scrollbar {
+  display: none;
+}
