@@ -22,11 +22,11 @@
 }
 
 .discover_link_even {
-    @apply bg-[#b3b3b3]
+    @apply bg-[var(--background-grey)]
 }
 
 .discover_link_odd {
-    @apply bg-[var(--background-grey)]
+    @apply bg-[#b3b3b3]
 }
 
 .discover_link:hover {
