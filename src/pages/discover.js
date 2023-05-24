@@ -35,6 +35,14 @@ export default function Discover() {
                     users.push(user)
                 })
 
+                if(searchQueryTemp) {
+                    users = users.filter((u) => 
+                        u.userName.toLowerCase().includes(searchQueryTemp.toLowerCase()) || 
+                        u.firstName.toLowerCase().includes(searchQueryTemp.toLowerCase()) ||
+                        u.lastName.toLowerCase().includes(searchQueryTemp.toLowerCase())
+                    )
+                }
+
                 setUsersData(users)
             } catch (error) {
 
@@ -52,7 +60,7 @@ export default function Discover() {
             </Head>
             <div className='discover_main'>
                 {usersData.map((item, index) => (
-                    <div className={`discover_profile ${(index + 1) % 2 === 0 ? 'bg-[var(--background-grey)]' : 'bg-[#f372728f]'}`} style={{ minHeight: windowHeight }} key={index}>
+                    <div className={`discover_profile ${(index + 1) % 2 === 0 ? 'bg-[#f372728f]' : 'bg-[var(--background-grey)]'}`} style={{ minHeight: windowHeight }} key={index}>
                         <Image
                             className='max-w-[70px]'
                             src={item.gender === 'male' ?
