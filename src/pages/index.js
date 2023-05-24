@@ -90,8 +90,8 @@ export default function Home() {
           </ul>
           <div className='accountDiv'>
             <div className='miniSearch'>
-              <a href=''><Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/search__1_.png?updatedAt=1681465571645' alt='Search Icon' width={150} height={150}></Image></a>
-              <input placeholder='Type something' autoComplete='off'></input>
+              <a className='cursor-pointer' onClick={discover}><Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/search__1_.png?updatedAt=1681465571645' alt='Search Icon' width={150} height={150}></Image></a>
+              <input placeholder='Type something' autoComplete='off' onChange={(e) => setSearchInfo(e.target.value)}></input>
             </div>
             <a className='profileIcon' href=''><Image src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/profile-user.png?updatedAt=1682980525659' alt='Profile Icon' width={220} height={220}></Image></a>
             <button onClick={handleMyAccount}>MY ACCOUNT</button>
