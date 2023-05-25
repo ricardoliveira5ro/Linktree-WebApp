@@ -1,4 +1,31 @@
 .discover_main {
+    @apply flex flex-col
+}
+
+.discover_header {
+    @apply fixed left-0 right-0 mt-4 rounded-lg z-10 flex justify-center items-center;
+}
+
+.discover_search {
+    @apply flex flex-row bg-white px-3 py-1.5 rounded-lg justify-center
+}
+
+.discover_search input {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 20px;
+    line-height: 18px;
+    @apply ml-2.5 max-w-[250px]
+}
+
+.discover_search input:focus {
+    outline: none;
+}
+
+.discover_gender_filter {
+    @apply flex flex-row items-center mx-8 rounded-md
+}
+
+.discover_list {
     @apply flex flex-row flex-wrap
 }
 
@@ -7,7 +34,7 @@
 }
 
 .discover_profile img {
-    @apply mt-10
+    @apply mt-12
 }
 
 .discover_profile h3 {
@@ -33,9 +60,23 @@
     @apply text-white bg-[var(--red)]
 }
 
+.discover_notFound {
+    @apply flex flex-col justify-center items-center bg-[var(--background-grey)] w-full px-6
+}
+
+.discover_notFound h3 {
+    font-family: 'Ubuntu', sans-serif;
+    @apply mt-4 font-light text-3xl text-center
+}
+
+.discover_notFound span {
+    font-family: 'Abhaya Libre', serif;
+    @apply mt-4 text-2xl text-center
+}
+
 /* Reset min-w of links */
 @media (max-width: 400px) {
     .discover_link {
-        @apply min-w-fit
+        @apply min-w-fit 
     }
 }
