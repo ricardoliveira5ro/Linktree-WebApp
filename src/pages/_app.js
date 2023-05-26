@@ -3,6 +3,7 @@ import '../styles/home.css'
 import '../styles/signup_login.css'
 import '../styles/account.css'
 import '../styles/discover.css'
+import '../styles/user.css'
 import AuthContextProvider from './authContext'
 
 export default function App({ Component, pageProps }) {
