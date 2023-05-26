@@ -1,0 +1,17 @@
+.main_user {
+    @apply flex bg-[var(--background-grey)]
+}
+
+.main_user_profile {
+    @apply flex flex-col items-center w-full px-10 py-5
+}
+
+.main_user_profile h3 {
+    font-family: 'Abhaya Libre', serif;
+    @apply mt-3 mb-3 text-2xl
+}
+
+.user_link {
+    font-family: 'Open Sans', sans-serif;
+    @apply px-3 py-1 rounded-lg mt-6 w-full text-center text-lg text-white max-w-[1000px]
+}
