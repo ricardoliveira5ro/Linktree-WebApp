@@ -25,6 +25,7 @@ export default function Account() {
     const router = useRouter();
     const auth = getAuth(firebase_app);
     const db = getDatabase();
+    const [publicURL, setPublicURL] = useState('')
 
     //Window size
     useEffect(() => {
@@ -87,6 +88,8 @@ export default function Account() {
                         }
 
                         setNumLinks(items ? items.length - 1 : 0)
+
+                        getPublicURl()
                     }
                 }
 
@@ -200,6 +203,12 @@ export default function Account() {
         window.location.reload();
     }
 
+    const getPublicURl = () => {
+        var url = new URL(window.location.href);
+        url.pathname = url.pathname.slice(0, url.pathname.lastIndexOf('/'));
+        setPublicURL(url.toString() + snapshotData.email)
+    }
+
     return (
         <>
             <Head>
@@ -308,8 +317,17 @@ export default function Account() {
                                 </button>
                             </div>
                         </div>
-
                     </form>
+                    <div className='account_publicURL'>
+                        <div className='account_publicURL_header'>
+                            <h3>Public profile</h3>
+                            <div onClick={() => navigator.clipboard.writeText(publicURL)}>
+                                <span>Copy</span>
+                                <Image className='max-w-[25px] ml-2' src='https://ik.imagekit.io/ricardo5ro/Linktree/icons/copy.png?updatedAt=1685292898685' width={500} height={500} alt='Copy button'></Image>
+                            </div>
+                        </div>
+                        <span className='account_url_span'>{publicURL}</span>
+                    </div>
                 </div>
             </div>
         </>

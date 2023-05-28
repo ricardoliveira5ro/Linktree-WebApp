@@ -193,6 +193,32 @@
     @apply font-medium text-white mr-2 text-lg
 }
 
+.account_publicURL {
+    @apply flex flex-col mt-9
+}
+
+.account_publicURL_header {
+    @apply flex flex-row justify-between
+}
+
+.account_publicURL_header h3 {
+    font-family: 'Ubuntu', sans-serif;
+    @apply font-bold text-2xl
+}
+
+.account_publicURL_header div {
+    @apply flex items-center cursor-pointer
+}
+
+.account_publicURL_header span {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.account_url_span {
+    font-family: 'Abhaya Libre', serif;
+    @apply text-xl italic mt-1.5
+}
+
 @media (max-height: 650px) {
     .username {
         @apply mb-6
