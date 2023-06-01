@@ -96,7 +96,7 @@ export default function Account() {
                 }
 
             } catch (error) {
-                // Handle error
+                
             }
         }
 
