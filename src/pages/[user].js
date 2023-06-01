@@ -40,7 +40,7 @@ export default function Login() {
             }
         }
         fetchData()
-    }, [db]);
+    }, [db, router.query.user]);
 
     return (
         <>

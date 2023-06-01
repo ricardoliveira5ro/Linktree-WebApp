@@ -89,7 +89,9 @@ export default function Account() {
 
                         setNumLinks(items ? items.length - 1 : 0)
 
-                        getPublicURl()
+                        var url = new URL(window.location.href);
+                        url.pathname = url.pathname.slice(0, url.pathname.lastIndexOf('/'));
+                        setPublicURL(url.toString() + snapshot.val().email)
                     }
                 }
 
@@ -203,11 +205,12 @@ export default function Account() {
         window.location.reload();
     }
 
+    /*
     const getPublicURl = () => {
         var url = new URL(window.location.href);
         url.pathname = url.pathname.slice(0, url.pathname.lastIndexOf('/'));
         setPublicURL(url.toString() + snapshotData.email)
-    }
+    }*/
 
     return (
         <>
