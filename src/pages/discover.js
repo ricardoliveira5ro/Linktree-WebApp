@@ -53,7 +53,7 @@ export default function Discover() {
             }
         }
         fetchData()
-    }, [db]);
+    }, [db, searchQueryTemp]);
 
     const search = () => {
         if (!searchQueryFilter) {
